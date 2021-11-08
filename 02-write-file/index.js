@@ -2,7 +2,6 @@
 const path = require('path');
 const fs = require('fs');
 const readline = require('readline');
-const { resolve } = require('path/posix');
 const { exit, stdin } = require('process');
 
 //filepath
@@ -14,14 +13,14 @@ function ask() {
     output: process.stdout,
   });
 
-  return new Promise((resolve, reject) => {
+  return new Promise((res, rej) => {
     try {
       getUserInput.question('>>input something: ', (userInput) => {
         getUserInput.close();
-        resolve(userInput);
+        res(userInput);
       });
     } catch (err) {
-      reject(err);
+      rej(err);
     }
   });
 }
